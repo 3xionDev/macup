@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+
+# Project Name: macup
+# Developer: Nolan Stone
+# Date: 2026-02-11
+# Purpose: This app allows users to match and record MAC prefixes
+#
+
+
 import requests
 import os
 from pathlib import Path
