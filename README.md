@@ -6,6 +6,12 @@ An extremely minimal single-script offline Linux command line utility for matchi
 macup (MAC Lookup) is a very small single-script command line tool intended to be used with Linux. macup allows you to match a 6-digit hex code MAC prefix to the vendor that owns that prefix. It also allows you to fetch all prefixes associated with a specific vendor, and to generate a random registered prefix for device spoofing. macup is extremely easy to use (it only has five command line options) and provides a versatile and very quick alternative to manually searching the prefix up on the Internet. In fact, it doesn't even require internet! Only once after install is internet required, during which macup is fetching the local database. Once this is done, you may continue on using macup without internet. This is very useful for checking if firewall-level MAC address blocks are working properly/whether they can be subverted via a MAC change. 
 
 # Installation
+## Arch Linux
+macup is available on the AUR (Arch User Repository). install it with your preferred AUR helper, or build it from source:
+```
+yay -S macup
+```
+## Other Linux distributions
 macup is so simple that I was able to fit everything into one install script. this means that installation is incredibly easy. this is the procedure for installation (you need internet for this):
 ```
 git clone https://github.com/3xiondev/macup.git
