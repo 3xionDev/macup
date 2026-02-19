@@ -11,26 +11,23 @@ macup is available on the AUR (Arch User Repository). install it with your prefe
 ```
 yay -S macup
 ```
+## Fedora/RHEL/CentOS
+macup is available on Fedora's Copr repository and can be installed with `dnf`:
+```
+sudo dnf copr enable 3xiondev/macup
+sudo dnf install macup
+```
 ## Other Linux distributions
-macup is so simple that I was able to fit everything into one install script. this means that installation is incredibly easy. this is the procedure for installation (you need internet for this):
+Prebuilt binaries are available on the Releases page. The tarball must be extracted and once that is done the binary can be found in `/dist`. Place the binary in `/usr/bin` and make it executable like so:
 ```
-git clone https://github.com/3xiondev/macup.git
-cd macup
+sudo chmod a+x macup
+sudo mv macup /usr/bin
 ```
-the install script is marked as nonexecutable by default, so we need to make it executable:
-```
-chmod +x install.sh
-```
-finally, we run the script with sudo. do not run the script as root user:
-```
-sudo ./install.sh
-```
-Once the process has finished, congratulations! macup is ready. however, you're not done setting it up. read on for further instructions.
 
 # Usage
-before using macup for the first time, you need to intialize it. this requires a network connection, though this is the last time internet is needed. simply run:
+before using macup for the first time, you need to initialize it. this requires a network connection and superuser privileges, though this is the last time either are needed. simply run:
 ```
-macup -i
+sudo macup -i
 ```
 and the utility will fetch the database and store it. once the database has been fetched, a network connection is no longer necessary.
 
@@ -42,17 +39,18 @@ though i will provide it and some examples here for clarity.
 
 syntax:
 ```
-macup <-pvrih> <prefix/vendor>
+macup <-pvrihs> <prefix/vendor>
 -p | specify a prefix to return the vendor for
 -v | specify a vendor to return all prefixes for
 -r | return a random prefix and its vendor
 -i | download the database that is necessary for macup's operation
+-s | save output to specified filename (only works with -v, do not include file extension)
 -h | display help message
 ```
 for example, to search a prefix:
 ```
 macup -p E8:F4:08
->>> Intel Corporate
+>>> E8:F4:08 | Intel Corporate
 ```
 now to search a vendor:
 ```
@@ -62,5 +60,5 @@ macup -v Apple
 finally, picking a random prefix:
 ```
 macup -r
->>> 00:59:DC Cisco Systems, Inc
+>>> 00:59:DC | Cisco Systems, Inc
 ```
