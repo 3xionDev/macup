@@ -9,7 +9,7 @@ macup (MAC Lookup) is a very small single-script command line tool intended to b
 ## Arch Linux
 macup is available on the AUR (Arch User Repository). install it with your preferred AUR helper, or build it from source:
 ```
-yay -S macup
+yay -Sy macup
 ```
 ## Fedora/RHEL/CentOS
 macup is available on Fedora's Copr repository and can be installed with `dnf`:
