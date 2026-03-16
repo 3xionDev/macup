@@ -10,12 +10,13 @@
 
 import requests
 import os
-from pathlib import Path
+import pathlib
 import json
 import random
 import argparse
 import sys
 import platform
+import datetime
 
 plt = platform.system()
 
@@ -42,6 +43,8 @@ def main():
 
     args = parser.parse_args()
 
+    check_database_uptodate()
+
     if args.init:
         init()
     if args.prefix:
@@ -64,10 +67,27 @@ def main():
 #     print("-r | Generate a random prefix and its vendor (for subversion testing purposes)")
 #     print("-h | Display this help message and end execution")
 
+def check_database_uptodate():
+    path = pathlib.Path(f"{paths[plt]}/mac-vendor.json")
+    try:
+        stat = path.stat()
+    except Exception:
+        return
+
+    try:
+        timestamp = stat.st_birthtime
+    except AttributeError:
+        timestamp = stat.st_ctime
+
+    diff = datetime.now() - datetime.fromtimestamp(timestamp)
+
+    if diff.days > 14:
+        print(f"Warning: Database is out-of-date ({diff.days} days)! Please refetch with: sudo macup -i")
+
 def init():
     try:
         try:
-            resDir = Path(paths[plt])
+            resDir = pathlib.Path(paths[plt])
             resDir.mkdir()
         except FileExistsError:
             print("Directory already exists. Ignoring mkdir...")
