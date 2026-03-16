@@ -79,7 +79,7 @@ def check_database_uptodate():
     except AttributeError:
         timestamp = stat.st_ctime
 
-    diff = datetime.now() - datetime.fromtimestamp(timestamp)
+    diff = datetime.datetime.now() - datetime.datetime.fromtimestamp(timestamp)
 
     if diff.days > 14:
         print(f"Warning: Database is out-of-date ({diff.days} days)! Please refetch with: sudo macup -i")
